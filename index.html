@@ -1,0 +1,397 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Minha Rayla ❤️</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #feada6 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .font-love {
+      font-family: 'Dancing Script', cursive;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(105vh) scale(0.5) rotate(0deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    .bg-heart {
+      position: absolute;
+      pointer-events: none;
+      animation: floatHeart 6s linear infinite;
+    }
+    @keyframes bunnyKiss {
+      0% { transform: scale(0.3); opacity: 0; }
+      30% { transform: scale(1.1); opacity: 1; }
+      50% { transform: scale(1); opacity: 1; }
+      80% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(0.5); opacity: 0; }
+    }
+    .bunny-animation-active {
+      animation: bunnyKiss 2.2s ease-in-out forwards;
+    }
+    @keyframes pulseHeart {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+    }
+    .pulse-heart {
+      animation: pulseHeart 1.4s infinite;
+    }
+  </style>
+</head>
+<body class="text-gray-800 flex flex-col items-center justify-between min-h-screen relative p-4 sm:p-6">
+
+  <!-- Fundo de Corações Flutuantes Contínuo -->
+  <div id="hearts-container" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+  <!-- Cabeçalho -->
+  <header class="w-full max-w-2xl text-center my-4 z-10">
+    <div class="glass rounded-3xl p-6 shadow-xl relative overflow-hidden">
+      <h1 class="text-4xl sm:text-5xl font-love text-rose-600 font-bold drop-shadow-sm flex items-center justify-center gap-3">
+        <i class="fa-solid fa-heart text-red-500 pulse-heart text-3xl sm:text-4xl"></i>
+        Para Minha Rayla
+        <i class="fa-solid fa-heart text-red-500 pulse-heart text-3xl sm:text-4xl"></i>
+      </h1>
+      <p class="text-gray-700 mt-2 text-sm sm:text-base font-medium">Rayla, você é a razão do meu melhor sorriso e da minha maior felicidade ✨</p>
+      
+      <!-- Contador de Tempo de Amor -->
+      <div class="mt-4 pt-3 border-t border-rose-200/80">
+        <p class="text-xs text-rose-700 font-semibold uppercase tracking-wider mb-1">Nosso Contador de Amor ❤️</p>
+        <div id="loveTimer" class="flex justify-center items-center gap-3 text-rose-800 font-semibold text-sm sm:text-base">
+          <!-- Atualizado via JavaScript -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container Principal do Carrossel -->
+  <main class="w-full max-w-xl z-10 my-auto">
+    <div class="glass rounded-3xl p-4 sm:p-6 shadow-2xl relative">
+      
+      <!-- Moldura da Foto Principal -->
+      <div class="relative w-full aspect-[3/4] sm:aspect-[4/5] rounded-2xl overflow-hidden shadow-lg group bg-rose-100 flex items-center justify-center">
+        
+        <!-- Elementos de Animação Amorosa Sobreposta (Coelhinhos Beijando) -->
+        <div id="bunnyOverlay" class="absolute inset-0 z-30 flex flex-col items-center justify-center bg-rose-950/40 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity">
+          <div id="bunnyBox" class="flex flex-col items-center justify-center transform scale-0">
+            <svg class="w-40 h-40 sm:w-48 sm:h-48 drop-shadow-xl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Coelho Esquerdo -->
+              <g id="bunnyLeft">
+                <ellipse cx="70" cy="120" rx="30" ry="35" fill="#FFFFFF" />
+                <circle cx="70" cy="75" r="25" fill="#FFFFFF" />
+                <ellipse cx="60" cy="35" rx="7" ry="25" fill="#FFFFFF" transform="rotate(-10 60 35)" />
+                <ellipse cx="60" cy="35" rx="4" ry="18" fill="#FFB6C1" transform="rotate(-10 60 35)" />
+                <ellipse cx="75" cy="35" rx="7" ry="22" fill="#FFFFFF" transform="rotate(5 75 35)" />
+                <ellipse cx="75" cy="35" rx="4" ry="15" fill="#FFB6C1" transform="rotate(5 75 35)" />
+                <circle cx="82" cy="70" r="3.5" fill="#333" />
+                <ellipse cx="88" cy="75" rx="3" ry="2" fill="#FF9999" />
+                <circle cx="75" cy="80" r="4" fill="#FFB6C1" opacity="0.7" />
+              </g>
+              
+              <!-- Coração Flutuante do Beijo -->
+              <path class="pulse-heart" d="M100 65 C100 60, 92 50, 85 58 C78 66, 100 85, 100 85 C100 85, 122 66, 115 58 C108 50, 100 60, 100 65 Z" fill="#FF3366" />
+              
+              <!-- Coelho Direito -->
+              <g id="bunnyRight">
+                <ellipse cx="130" cy="120" rx="30" ry="35" fill="#FFFFFF" />
+                <circle cx="130" cy="75" r="25" fill="#FFFFFF" />
+                <ellipse cx="140" cy="35" rx="7" ry="25" fill="#FFFFFF" transform="rotate(10 140 35)" />
+                <ellipse cx="140" cy="35" rx="4" ry="18" fill="#FFB6C1" transform="rotate(10 140 35)" />
+                <ellipse cx="125" cy="35" rx="7" ry="22" fill="#FFFFFF" transform="rotate(-5 125 35)" />
+                <ellipse cx="125" cy="35" rx="4" ry="15" fill="#FFB6C1" transform="rotate(-5 125 35)" />
+                <circle cx="118" cy="70" r="3.5" fill="#333" />
+                <ellipse cx="112" cy="75" rx="3" ry="2" fill="#FF9999" />
+                <circle cx="125" cy="80" r="4" fill="#FFB6C1" opacity="0.7" />
+              </g>
+
+              <!-- Brilhos -->
+              <circle cx="100" cy="40" r="3" fill="#FFF" class="animate-ping" />
+              <circle cx="60" cy="90" r="2" fill="#FFF" class="animate-pulse" />
+              <circle cx="140" cy="90" r="2" fill="#FFF" class="animate-pulse" />
+            </svg>
+            <p class="font-love text-3xl text-white font-bold tracking-wide mt-2">Um Beijinho para Rayla! 💋</p>
+          </div>
+        </div>
+
+        <!-- Imagem Exibida -->
+        <img id="currentImage" src="media/d1.jpeg" alt="Foto de Rayla" onerror="handleImageError(this)" class="w-full h-full object-cover transition-all duration-300 transform scale-100">
+
+        <!-- Botões de Navegação sobre a foto -->
+        <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full glass flex items-center justify-center text-rose-700 hover:bg-white hover:text-rose-600 transition shadow-md z-20 active:scale-90 cursor-pointer">
+          <i class="fa-solid fa-chevron-left text-lg"></i>
+        </button>
+        <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full glass flex items-center justify-center text-rose-700 hover:bg-white hover:text-rose-600 transition shadow-md z-20 active:scale-90 cursor-pointer">
+          <i class="fa-solid fa-chevron-right text-lg"></i>
+        </button>
+
+        <!-- Contador de Foto Exibida -->
+        <div class="absolute top-3 right-3 bg-black/40 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full z-20 font-medium">
+          <span id="currentIndexText">1</span> / <span id="totalIndexText">6</span>
+        </div>
+      </div>
+
+      <!-- Legendas e Frases Românticas -->
+      <div class="mt-5 text-center min-h-[80px] flex flex-col justify-center items-center">
+        <p id="romanticQuote" class="font-love text-2xl sm:text-3xl text-rose-700 font-semibold leading-relaxed transition-opacity duration-300">
+          "Rayla, seu sorriso ilumina todo o meu universo!"
+        </p>
+      </div>
+
+      <!-- Ações Interativas -->
+      <div class="mt-4 flex flex-wrap items-center justify-center gap-3 border-t border-rose-200/60 pt-4">
+        <button onclick="sendLoveEffect(event)" class="px-5 py-2.5 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-medium rounded-full text-sm shadow-lg flex items-center gap-2 transform active:scale-95 transition cursor-pointer">
+          <i class="fa-solid fa-heart pulse-heart text-red-200"></i> Mandar Beijinhos
+        </button>
+        
+        <button onclick="triggerKissAnimation()" class="px-5 py-2.5 bg-white hover:bg-rose-50 text-rose-600 font-medium rounded-full text-sm shadow-md border border-rose-200 flex items-center gap-2 transform active:scale-95 transition cursor-pointer">
+          <i class="fa-solid fa-wand-magic-sparkles text-amber-500"></i> Beijo do Coelhinho 🐰
+        </button>
+      </div>
+
+      <!-- Indicadores (Bolinhas) -->
+      <div id="dotsContainer" class="flex justify-center items-center gap-2 mt-5">
+        <!-- Gerado Dinamicamente -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Rodapé Carinhoso -->
+  <footer class="w-full max-w-2xl text-center my-4 z-10">
+    <div class="glass rounded-2xl p-4 shadow-md flex flex-col sm:flex-row items-center justify-between gap-2 text-xs sm:text-sm text-gray-700">
+      <span>Feito especialmente para a Rayla ❤️</span>
+      <div class="flex items-center gap-2 font-semibold text-rose-600">
+        <i class="fa-solid fa-infinity"></i> Te amo para sempre
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function createFallbackSVG(title, color) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800">
+        <defs>
+          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:${color};stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#fecfef;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grad)"/>
+        <circle cx="300" cy="350" r="140" fill="#ffffff" opacity="0.3"/>
+        <path d="M300 310 C300 270, 240 220, 180 280 C120 340, 300 480, 300 480 C300 480, 480 340, 420 280 C360 220, 300 270, 300 310 Z" fill="#e11d48"/>
+        <text x="50%" y="620" font-family="'Dancing Script', cursive, sans-serif" font-size="48" font-weight="bold" fill="#881337" text-anchor="middle">Rayla ❤️</text>
+        <text x="50%" y="670" font-family="'Poppins', sans-serif" font-size="22" fill="#9f1239" text-anchor="middle">${title}</text>
+      </svg>`;
+      return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
+
+    const photos = [
+      {
+        src: 'media/d1.jpeg',
+        fallback: createFallbackSVG('Foto 1 - Olhar Encantador', '#ff9a9e'),
+        quote: "Rayla, seu olhar ilumina o meu mundo inteirinho!"
+      },
+      {
+        src: 'media/d2.jpeg',
+        fallback: createFallbackSVG('Foto 2 - Luz e Beleza', '#ffb199'),
+        quote: "A luz do sol só brilha forte porque reflete na sua beleza, Rayla."
+      },
+      {
+        src: 'media/d3.jpeg',
+        fallback: createFallbackSVG('Foto 3 - Perfeição', '#f6d365'),
+        quote: "Cada detalhe seu me faz ter certeza de que você é perfeita, Rayla."
+      },
+      {
+        src: 'media/d4.jpeg',
+        fallback: createFallbackSVG('Foto 4 - Doce Sorriso', '#fda085'),
+        quote: "Apenas olhar para você acalma totalmente o meu coração, Rayla."
+      },
+      {
+        src: 'media/d5.jpeg',
+        fallback: createFallbackSVG('Foto 5 - Angelical', '#fbc2eb'),
+        quote: "Você é a pessoa mais incrível e preciosa que já conheci, Rayla."
+      },
+      {
+        src: 'media/d6.jpeg',
+        fallback: createFallbackSVG('Foto 6 - Meu Amor', '#a18cd1'),
+        quote: "Te amar, Rayla, é a decisão mais doce e feliz de toda a minha vida!"
+      }
+    ];
+
+    let currentIndex = 0;
+
+    window.onload = function() {
+      createBackgroundHearts();
+      startLoveTimer();
+      setupDots();
+      updateCarousel();
+    };
+
+    function handleImageError(img) {
+      if (photos[currentIndex] && img.src !== photos[currentIndex].fallback) {
+        img.src = photos[currentIndex].fallback;
+      }
+    }
+
+    function updateCarousel() {
+      const imgElem = document.getElementById('currentImage');
+      const quoteElem = document.getElementById('romanticQuote');
+      const currentIndexText = document.getElementById('currentIndexText');
+      const totalIndexText = document.getElementById('totalIndexText');
+
+      imgElem.src = photos[currentIndex].src;
+      quoteElem.innerText = `"${photos[currentIndex].quote}"`;
+      currentIndexText.innerText = currentIndex + 1;
+      totalIndexText.innerText = photos.length;
+
+      updateDots();
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % photos.length;
+      updateCarousel();
+      triggerKissAnimation();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+      updateCarousel();
+      triggerKissAnimation();
+    }
+
+    function goToSlide(index) {
+      if (index === currentIndex) return;
+      currentIndex = index;
+      updateCarousel();
+      triggerKissAnimation();
+    }
+
+    function setupDots() {
+      const container = document.getElementById('dotsContainer');
+      container.innerHTML = '';
+      photos.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = `h-3 rounded-full transition-all duration-300 cursor-pointer ${i === currentIndex ? 'bg-rose-600 w-7' : 'bg-rose-300 w-3 hover:bg-rose-400'}`;
+        dot.onclick = () => goToSlide(i);
+        container.appendChild(dot);
+      });
+    }
+
+    function updateDots() {
+      const dots = document.getElementById('dotsContainer').children;
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = `h-3 rounded-full transition-all duration-300 cursor-pointer ${i === currentIndex ? 'bg-rose-600 w-7' : 'bg-rose-300 w-3 hover:bg-rose-400'}`;
+      }
+    }
+
+    function triggerKissAnimation() {
+      const overlay = document.getElementById('bunnyOverlay');
+      const box = document.getElementById('bunnyBox');
+
+      overlay.classList.remove('pointer-events-none');
+      overlay.style.opacity = '1';
+      box.classList.add('bunny-animation-active');
+
+      setTimeout(() => {
+        overlay.style.opacity = '0';
+        overlay.classList.add('pointer-events-none');
+        box.classList.remove('bunny-animation-active');
+      }, 1500);
+    }
+
+    function sendLoveEffect(event) {
+      const btn = event.currentTarget;
+      const rect = btn.getBoundingClientRect();
+
+      for (let i = 0; i < 14; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '<i class="fa-solid fa-heart text-rose-500"></i>';
+        heart.className = 'fixed pointer-events-none z-50 text-xl transition-all duration-1000 ease-out';
+        
+        const startX = rect.left + rect.width / 2;
+        const startY = rect.top + rect.height / 2;
+        
+        heart.style.left = `${startX}px`;
+        heart.style.top = `${startY}px`;
+        
+        document.body.appendChild(heart);
+
+        const angle = (Math.PI * 2 * i) / 14;
+        const velocity = 70 + Math.random() * 60;
+        const tx = Math.cos(angle) * velocity;
+        const ty = Math.sin(angle) * velocity - 40;
+
+        requestAnimationFrame(() => {
+          heart.style.transform = `translate(${tx}px, ${ty}px) scale(${0.8 + Math.random()}) rotate(${Math.random() * 60}deg)`;
+          heart.style.opacity = '0';
+        });
+
+        setTimeout(() => heart.remove(), 1000);
+      }
+    }
+
+    function createBackgroundHearts() {
+      const container = document.getElementById('hearts-container');
+      const heartIcons = ['💖', '💕', '💗', '❤️', '🌸', '✨'];
+
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'bg-heart text-lg sm:text-2xl opacity-75';
+        heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+        heart.style.left = `${Math.random() * 100}vw`;
+        heart.style.animationDuration = `${4 + Math.random() * 4}s`;
+
+        container.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 8000);
+      }, 450);
+    }
+
+    function startLoveTimer() {
+      const startDate = new Date(Date.now() - 24 * 60 * 60 * 1000);
+      const timerElem = document.getElementById('loveTimer');
+
+      function updateTimer() {
+        const now = new Date();
+        const diff = now - startDate;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / 1000 / 60) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        timerElem.innerHTML = `
+          <span>${days}d</span> : 
+          <span>${hours}h</span> : 
+          <span>${minutes}m</span> : 
+          <span>${seconds}s</span>
+        `;
+      }
+
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+  </script>
+</body>
+</html>
+
+```
